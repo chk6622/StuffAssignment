@@ -60,7 +60,10 @@ public class MyAssignment implements IAssignment{
 
         }
 
-        return rArray.stream().mapToInt(Integer::intValue).toArray();
+        return rArray.stream()
+                .mapToInt(Integer::intValue)   //convert integer to int
+                .filter(value -> value <= 1000)   //ignore the numbers bigger than 1000
+                .toArray();
     }
 
     /**
