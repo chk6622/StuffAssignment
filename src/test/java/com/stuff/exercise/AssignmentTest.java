@@ -10,6 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.Iterator;
+import java.util.List;
+
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes=MySpringBootApplication.class)
 public class AssignmentTest {
@@ -146,6 +149,22 @@ public class AssignmentTest {
         this.assignment.Add("-1,-2,-3");   //Add("1,-2,-3") => throws an exception
 
         this.assignment.Add("0,-1,-2, -3,4");   //Add("0,-1,-2, -3,4") => throws an exception
+
+    }
+
+    @Test
+    public void AddShouldHandleBigNumbers(){
+
+        int result = 2;
+        Assert.assertEquals(result, this.assignment.Add("2,1001"));   //Add("2,1001") => 2
+
+
+        result = 5;
+        Assert.assertEquals(result, this.assignment.Add("2,1001,3"));   //Add("2,1001,3") => 5
+
+
+        result = 5;
+        Assert.assertEquals(result, this.assignment.Add("2,1001,3,100000000"));   //Add("2,1001,3,100000000") => 5
 
     }
 }
