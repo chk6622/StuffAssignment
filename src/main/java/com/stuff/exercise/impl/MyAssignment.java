@@ -57,7 +57,7 @@ public class MyAssignment implements IAssignment{
                 rArray.add(value);
             }
             else{  // if the last character is not number then throw an exception
-                throw new IllegalArgumentException("input data is invalidate!");
+                throw new IllegalArgumentException(Constants.INPUT_DATA_INVALIDATE);
             }
 
             VerifyNegativeNumber(negativeNumbers);
@@ -94,10 +94,11 @@ public class MyAssignment implements IAssignment{
     private final void VerifyNegativeNumber(List<Integer> negativeNumbers) {
         int negativeSize = negativeNumbers.size();
         if(negativeSize == 1){
-            throw new IllegalArgumentException("negatives not allowed!");
+            throw new IllegalArgumentException(Constants.NEGATIVES_NOT_ALLOWED);
         }
         else if(negativeSize>1){
-            StringBuffer msgBuf = new StringBuffer("negatives not allowed:");
+            StringBuffer msgBuf = new StringBuffer(Constants.NEGATIVES_NOT_ALLOWED);
+            msgBuf.append(":");
             Iterator<Integer> iterator = negativeNumbers.iterator();
             while( iterator.hasNext() ){
                 Integer negativeNumber = iterator.next();

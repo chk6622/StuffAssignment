@@ -1,6 +1,7 @@
 package com.stuff.exercise;
 
 import com.stuff.MySpringBootApplication;
+import com.stuff.exercise.impl.Constants;
 import org.junit.Assert;
 import org.junit.Rule;
 import org.junit.Test;
@@ -81,7 +82,7 @@ public class AssignmentTest {
     public void shouldHandleInvalidateData(){
 
         thrown.expect(IllegalArgumentException.class);
-        thrown.expectMessage("input data is invalidate!");
+        thrown.expectMessage(Constants.INPUT_DATA_INVALIDATE);
         this.assignment.Add("1\n");   //Add("1\n") => throws an exception
 
         this.assignment.Add("1\n2\n");   //Add("1\n2\n") => throws an exception
@@ -129,7 +130,7 @@ public class AssignmentTest {
     public void shouldHandleNegativeNumber(){
 
         thrown.expect(IllegalArgumentException.class);
-        thrown.expectMessage("negatives not allowed!");
+        thrown.expectMessage(Constants.NEGATIVES_NOT_ALLOWED);
         this.assignment.Add("-1");   //Add("-1") => throws an exception
 
         this.assignment.Add("1,-2");   //Add("1,-2") => throws an exception
@@ -142,10 +143,10 @@ public class AssignmentTest {
     public void shouldHandleNegativeNumbers(){
 
         thrown.expect(IllegalArgumentException.class);
-        thrown.expectMessage("negatives not allowed:-1,-2");
+        thrown.expectMessage(Constants.NEGATIVES_NOT_ALLOWED + ":-1,-2");
         this.assignment.Add("-1,-2");   //Add("-1，-2") => throws an exception
 
-        thrown.expectMessage("negatives not allowed:-1,-2,-3");
+        thrown.expectMessage(Constants.NEGATIVES_NOT_ALLOWED + ":-1,-2,-3");
         this.assignment.Add("-1,-2,-3");   //Add("1,-2,-3") => throws an exception
 
         this.assignment.Add("0,-1,-2, -3,4");   //Add("0,-1,-2, -3,4") => throws an exception
