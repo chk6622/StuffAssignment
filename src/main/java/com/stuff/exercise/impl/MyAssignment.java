@@ -40,7 +40,7 @@ public class MyAssignment implements IAssignment{
                 }
                 if((curChar == '+' || curChar == '-')){  //if the current character is '+' or '-' and the next character is number then add the current character to the buffer
                     Character nextChar = charQueue.peek();
-                    if(nextChar != null && nextChar >= '0' && nextChar <='9'){
+                    if(nextChar !=null && nextChar >= '0' && nextChar <= '9'){
                         buf.append(curChar);
                     }
                 }
@@ -56,23 +56,7 @@ public class MyAssignment implements IAssignment{
                 throw new IllegalArgumentException("input data is invalidate!");
             }
 
-            int negativeSize = negativeNumbers.size();
-            if(negativeSize == 1){
-                throw new IllegalArgumentException("negatives not allowed!");
-            }
-            else if(negativeSize > 1){
-                StringBuffer msgBuf = new StringBuffer("negatives not allowed:");
-                Iterator<Integer> iterator = negativeNumbers.iterator();
-                while( iterator.hasNext() ){
-                    Integer negativeNumber = iterator.next();
-                    msgBuf.append(negativeNumber);
-                    if(iterator.hasNext()){
-                        msgBuf.append(",");
-                    }
-                }
-                throw new IllegalArgumentException(msgBuf.toString());
-            }
-
+            VerifyNegativeNumber(negativeNumbers);
 
         }
 
@@ -95,5 +79,28 @@ public class MyAssignment implements IAssignment{
             }
         }
         return value;
+    }
+
+    /**
+     * Verify if there is negative number. If there is negative number in the list, the method will throw IllegalArgumentException.
+     * @param negativeNumbers negative number list
+     * */
+    private void VerifyNegativeNumber(List<Integer> negativeNumbers) {
+        int negativeSize = negativeNumbers.size();
+        if(negativeSize == 1){
+            throw new IllegalArgumentException("negatives not allowed!");
+        }
+        else if(negativeSize>1){
+            StringBuffer msgBuf = new StringBuffer("negatives not allowed:");
+            Iterator<Integer> iterator = negativeNumbers.iterator();
+            while( iterator.hasNext() ){
+                Integer negativeNumber = iterator.next();
+                msgBuf.append(negativeNumber);
+                if(iterator.hasNext()){
+                    msgBuf.append(",");
+                }
+            }
+            throw new IllegalArgumentException(msgBuf.toString());
+        }
     }
 }
