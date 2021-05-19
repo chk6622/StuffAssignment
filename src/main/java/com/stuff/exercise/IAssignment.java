@@ -7,11 +7,11 @@ public interface IAssignment {
      * @return the sum of the numbers. if numbers is null or empty, it returns 0
      * */
     default int Add(String numbers){
-        long rValue = 0;  //Return value default 0
+        int rValue = 0;  //Return value default 0
 
-        if(numbers!=null&&numbers.length()>0){
+        if(numbers != null && numbers.length() > 0){
             int[] numberArray = GetNumberFromString(numbers);  //Parse the string and get all numbers
-            if(numberArray!=null){
+            if(numberArray != null && numberArray.length > 0){
                 //Get the sum of all elements of the array
                 for (int val: numberArray) {
                     rValue += val;
@@ -19,7 +19,7 @@ public interface IAssignment {
             }
         }
 
-        return (int)rValue;
+        return rValue;
     }
 
     /**
