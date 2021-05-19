@@ -122,5 +122,31 @@ public class AssignmentTest {
         Assert.assertEquals(result, this.assignment.Add("//[_^]1[-^]\\+12\n*%3"));   //Add("//[_^]1[-^]\\+12\n*%3") => 16
     }
 
+    @Test
+    public void shouldHandleNegativeNumber(){
+
+        thrown.expect(IllegalArgumentException.class);
+        thrown.expectMessage("negatives not allowed!");
+        this.assignment.Add("-1");   //Add("-1") => throws an exception
+
+        this.assignment.Add("1,-2");   //Add("1,-2") => throws an exception
+
+        this.assignment.Add("1,-2, 3");   //Add("1,-2, 3") => throws an exception
+
+    }
+
+    @Test
+    public void shouldHandleNegativeNumbers(){
+
+        thrown.expect(IllegalArgumentException.class);
+        thrown.expectMessage("negatives not allowed:-1,-2");
+        this.assignment.Add("-1,-2");   //Add("-1，-2") => throws an exception
+
+        thrown.expectMessage("negatives not allowed:-1,-2,-3");
+        this.assignment.Add("-1,-2,-3");   //Add("1,-2,-3") => throws an exception
+
+        this.assignment.Add("0,-1,-2, -3,4");   //Add("0,-1,-2, -3,4") => throws an exception
+
+    }
 }
 
